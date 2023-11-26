@@ -1,3 +1,4 @@
+// Part 1: Math problems
 // The initial numbers that must be verified.
 const n1 = 10;
 const n2 = 15;
@@ -53,18 +54,65 @@ const dontDoThis =
 
 // Implement the following:
 // Check if all numbers are divisible by 5. Cache the result in a variable.
+const isDivisbleBy5 = (n1 % 5) + (n2 % 5) + (n3 % 5) + (n4 % 5) == 0;
+console.log(`The four numbers can be divided by 5: ${isDivisbleBy5}.`);
+
 // Check if the first number is larger than the last. Cache the result in a variable.
+const isThe1stLarger = n1 > n4;
+console.log(`The first number is larger than the last: ${isThe1stLarger}.`);
+
 // Accomplish the following arithmetic chain:
 // Subtract the first number from the second number.
 // Multiply the result by the third number.
 // Find the remainder of dividing the result by the fourth number.
-// Change the way that isOver25 calculates so that we do not need to use the NOT operator (!) in other logic comparisons. Rename the variable as appropriate.
-
-const isDivisbleBy5 = (n1 % 5) + (n2 % 5) + (n3 % 5) + (n4 % 5) == 0;
-console.log(`The four numbers can be divided by 5: ${isDivisbleBy5}.`);
-
-const isThe1stLarger = n1 > n4;
-console.log(`The first number is larger than the last: ${isThe1stLarger}.`);
-
 const arithmeticChain = ((n2 - n1) * n3) % n4;
 console.log(`The result of the arithmetic chain is: ${arithmeticChain}.`);
+
+// Change the way that isOver25 calculates so that we do not need to use the NOT operator (!) in other logic comparisons. Rename the variable as appropriate.
+// no number larger than 25
+
+const isNoNumberLargerThan25 = n1 <= 25 && n2 <= 25 && n3 <= 25 && n4 <= 25;
+console.log(`There is no number larger than 25: ${isNoNumberLargerThan25}`);
+
+// Part 2: Practical math
+// Let’s look at a more practical scenario.
+// You are planning a cross-country road trip!
+// The distance of the trip, in total, is 1,500 miles.
+// Your car’s fuel efficiency is as follows:
+// At 55 miles per hour, you get 30 miles per gallon.
+// At 60 miles per hour, you get 28 miles per gallon.
+// At 75 miles per hour, you get 23 miles per gallon.
+// You have a fuel budget of $175.
+// The average cost of fuel is $3 per gallon.
+// Set up a program to answer the following questions:
+// How many gallons of fuel will you need for the entire trip?
+// Will your budget be enough to cover the fuel expense?
+// How long will the trip take, in hours?
+// Compare the results when traveling at an average of 55, 60, and 75 miles per hour. Which makes the most sense for the trip?
+// Log the results of your calculations using string concatenation or template literals.
+
+const totalDistance = 1500;
+const fuelBudget = 175;
+const fuelCost = 3;
+const gallonAfford = fuelBudget / fuelCost; // 58.333...
+const milesPerGallonAt55mph = 30;
+const milesPerGallonAt60mph = 28;
+const milesPerGallonAt75mph = 23;
+
+function determineMph(paramMilesPerGallonAtMph, paramMph) {
+  let gallonsNeeded = (totalDistance / paramMilesPerGallonAtMph).toFixed(2);
+  let hoursToTravel = (totalDistance / paramMph).toFixed(2);
+  if (gallonsNeeded > gallonAfford) {
+    console.log(
+      `You need ${gallonsNeeded} gallons. You can't travel at this speed.`
+    );
+  } else {
+    console.log(
+      `You need ${gallonsNeeded} gallons. You can travel at this speed and it will take ${hoursToTravel} hours`
+    );
+  }
+}
+
+determineMph(milesPerGallonAt55mph, 55);
+determineMph(milesPerGallonAt60mph, 60);
+determineMph(milesPerGallonAt75mph, 75);
